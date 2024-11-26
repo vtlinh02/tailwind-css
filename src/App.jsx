@@ -1,4 +1,4 @@
-import { Hero } from "./sections";
+import { Hero, PopularProduct } from "./sections";
 import { Nav } from "./components";
 
 const App = () => {
@@ -7,6 +7,9 @@ const App = () => {
       <Nav />
       <section>
         <Hero />
+      </section>
+      <section>
+        <PopularProduct />
       </section>
     </main>
   );
