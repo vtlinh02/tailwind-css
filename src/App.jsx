@@ -5,7 +5,9 @@ const App = () => {
   return (
     <main>
       <Nav />
-      <Hero />
+      <section>
+        <Hero />
+      </section>
     </main>
   );
 };

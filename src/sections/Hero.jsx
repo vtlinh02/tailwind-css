@@ -1,32 +1,72 @@
-import { statistics } from "../constants";
-import { arrowRight } from "../assets/icons";
+import { statistics, shoes } from "../constants";
+import { bigShoe1 } from "../assets/images";
+
+import { useState } from "react";
+import { Button } from "../components";
 
 const Hero = () => {
+  const [currentShoe, setCurrentShoe] = useState(bigShoe1);
   return (
-    <section>
-      <p className="py-6 text-lg font-palanquin text-orange-400">
-        Our summer collections
-      </p>
-      <h1 className="pb-6 font-montserrat font-bold text-4xl">
-        The New Arrival <br />
-        <span className="text-orange-500">Nike</span> Shoes
-      </h1>
-      <p className="pb-8 font-palanquin text-[16px]">
-        Discover stylish Nike arrivals, quality comfort, and innovation for your
-        active life
-      </p>
-      <button className="flex px-8 py-4 bg-orange-600 rounded-full">
-        <span className="pr-2 text-white-400">Shop now</span>
-        <img src={arrowRight} alt="This is an arrow" />
-      </button>
-      <ul className="pt-[3rem] flex">
-        {statistics.map((statistic, index) => (
-          <li key={index} className="px-4 font-palanquin">
-            <h3 className="font-bold text-[2rem]">{statistic.value}</h3>
-            <p className="font-">{statistic.label}</p>
-          </li>
-        ))}
-      </ul>
+    <section className="h-screen flex w-full justify-center max-container">
+      <div className="w-2/5 flex relative flex-col justify-center">
+        <p className="text-xl font-montserrat text-coral-red">
+          Our Summer collections
+        </p>
+        <h1 className="whitespace-nowrap text-8xl font-bold font-palanquin pt-8 ">
+          <span className=" relative z-10 bg-white">The New Arrival </span>
+          <br />
+          <span className="text-coral-red inline-block mt-8">Nike</span> Shoes
+        </h1>
+        <p className="text-xl font-montserrat text-slate-gray pt-8 pb-16">
+          Discover stylish Nike arrivals, quality comfort, and innovation for
+          your active life.
+        </p>
+
+        <Button />
+
+        <ul className="flex gap-10 pt-8">
+          {statistics.map((stat, index) => (
+            <li>
+              <div className="text-4xl font-palanquin font-bold">
+                {stat.value}
+              </div>
+              <div className="text-xl font-montserrat text-slate-gray">
+                {stat.label}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className=" relative flex-1 flex justify-center items-center bg-primary bg-hero bg-cover bg-center">
+        <img
+          src={currentShoe}
+          alt="This is a big Shoe"
+          width={500}
+          height={500}
+        />
+        <ul className="flex absolute bottom-0 left-[20%] gap-8">
+          {shoes.map((shoe, index) => (
+            <li
+              onClick={() => {
+                setCurrentShoe(shoe.bigShoe);
+              }}
+              className={`cursor-pointer ${
+                currentShoe === shoe.bigShoe
+                  ? "border-4 border-coral-red"
+                  : undefined
+              }`}
+            >
+              <img
+                src={shoe.thumbnail}
+                alt="This is a shoe"
+                className="bg-card bg-cover bg-center"
+                width={110}
+                height={110}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 };
